@@ -16,16 +16,19 @@
         <h1>Simon Says</h1>
     </header>
     <main>
-            <button id="start">Start</button> 
-        <div class="circle-grid"><div class="circle" id="red"></div>   
+        <div id="whos-turn">Hey!</div>
+        <div class="circle-grid">
+            <div class="circle" id="red"><audio onclick="play()" id="audio" src="sounds/coffee-tin.wav" ></audio></div>   
             <div class="circle" id="blue"></div>
             <div class="circle" id="green"></div>
             <div class="circle" id="yellow"></div></div>
         <div class="score-box">
             <h3>Score:  <span id="score"></span></h3>
         </div>
-        <div class="reset">
-            <button>Reset</button>
+        <hr>
+        <div class="state-buttons">
+            <button id="start">Start</button> 
+            <button id="stop">Stop</button>
         </div>
     </main>
 </body>
