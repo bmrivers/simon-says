@@ -23,7 +23,7 @@ const buttons = [
 
 /*----- app's state (variables) -----*/ 
 // pattern of moves created by code during gameplay
-var compMoves = [0, 1, 2, 2];
+var compMoves = [0, 3, 1 ,2];
 var playersMoves = [];
 var currentMove = 0;
 var playing;
@@ -98,7 +98,7 @@ function play() {
             } else {
                 alert('Your final score is ' + compMoves - 1);
             }
-        }, 15000);
+        }, 10000);
     //}
 }
 
