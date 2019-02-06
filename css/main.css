@@ -8,18 +8,17 @@ font-family: 'Michroma', sans-serif;*/
     box-sizing: border-box;
    /*border: 1px solid gray;*/
 }
+
 body {
-    justify-content: center;
     color: white;
     font-family: 'Michroma', sans-serif;
     background-color: black;
     display: flex;
     flex-direction: column;
-    /*display: grid;
-    grid-template-columns: 20vw / 1fr 3fr 1fr 3fr 1fr;
-    grid-template-rows: 20vh / 2fr auto 2fr 1fr;*/
     margin: 0;
     padding: 0;
+    position: center;
+    justify-content: center;
 }
 
 h1 {
@@ -55,16 +54,21 @@ header {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: 100%;
+    align-self: center;
 }
 
 footer {
     text-align: right;
     background-color: black;
-    line-height: 50px;
-    font-size: 14px;
+    margin-top: 20px;
+    line-height: 20px;
+    font-size: 12px;
     padding: 10px;
     width: 100%;
     max-width: 1000px;
+}
+footer a {
+    text-decoration: none;
 }
 
 main {
@@ -72,13 +76,16 @@ main {
     margin: auto;
     width: 80vw;
     height: 80vh;
-    padding-top: 20px;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-content: center;
     flex-direction: column;
     min-height: 400px;
     max-width: 1000px;
+}
+main img {
+    float: right;
 }
 
 button {
@@ -93,14 +100,6 @@ button {
 button:disabled {
     color: gray;
     border: 2px solid gray;
-}
-
-.new-genre {
-    background-color: none;
-}
-.new-genre:hover {
-    border: 3px solid lime;
-    color: white;
 }
 
 .circle-grid {
@@ -124,24 +123,47 @@ button:disabled {
     border: 5px solid;
     margin: 20%;
 }
-
 .circle:hover {
     border-width: 10px;
 }
 
-#start {
-    border-radius: 20%;
-    float: left;
+.new-genre {
+    background-color: none;
+}
+.new-genre:hover {
+    border: 3px solid lime;
+    color: white;
 }
 
+#audio {
+    align-self: flex-end;
+    margin-right: 10vw;
+    margin-top: 20px;
+    position: relative;
+}
+#audio-disable {
+    position: absolute;
+    top: 0px;
+    right: 10vw;
+}
+#audio-enable {
+    position: absolute;
+    top: 0px;
+    right: 10vw;
+}
+
+#start {
+    float: left;
+    margin: 0px;
+}
 #start:hover {
     border: 2px solid lime;    
 }
 
 #stop {
-    border-radius: 20%;
     float: right;
-}
+    margin: 0px;
+} 
 #stop:hover {
     border: 2px solid red;    
 }
@@ -181,44 +203,58 @@ button:disabled {
         width: 100%;
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         height: 100vh;
     }
-    h1 {
-        height: 10vh;
-        margin: 0;
-    }
+
     header {
         height: 10vh;
         width: 100%;
         order: 1;
         display: block;
         min-height: 20px;
+        line-height: 10px;
     }
+    header h1 {
+        margin: 0;
+        font-size: 24px;
+    }
+
     section {
+        margin-top: 30px;
         order: 2;
         height: 10vh;
         min-height: 20px;
+        display: flex;
     }
     section div {
         height: 10vh;
         width: 30vw;
         min-height: 20px;
-    }
-    div {
         display: block;
     }
+
+    .score-box {
+        order: 3;
+        margin-bottom: 0px;
+
+    }
+    .score-box h3 {
+        padding: 5px;
+        font-size: 12px;
+    }
+
     main {
         height:50vh;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        order: 3;
+        order: 4;
         padding: 0px;
     }
     section h3 {
         font-size: 0.2em;
-        /*margin-left: 20px;*/
         line-height: 0.2em;
         width: 30%;
     }
@@ -228,7 +264,7 @@ button:disabled {
     footer {
         width: 100%;
         font-size: 10px;
-        order: 4;
+        order: 5;
         padding: 3px;
     }
     .circle {
@@ -238,22 +274,23 @@ button:disabled {
     .circle-grid {
         order: 2;
         min-height: 100px;
+        height: 800px;
         margin: auto;
     }
+
     .state-buttons {
         order: 4;
     }
+
     #whos-turn {
         order: 3;
+        text-align: left;
     }
-    .score-box {
-        order: 1;
-        margin: 0;
-        height: 5vh;
-    }
-    .score-box h3 {
-        margin: 0px;
-        padding: 0px;
-        font-size: 12px;
+
+    #audio img {
+        position: absolute;
+        right: 0.5vw;
+        top: 1vw;
+        width: 20px;
     }
 }

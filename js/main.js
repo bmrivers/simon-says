@@ -47,7 +47,7 @@ const player = new Audio();
 
 /*----------- app's state (variables) ------------*/ 
 var compMoves, compSpeed, playersMoves, currentMove, 
-playing, waitForUser, playMoves;
+playing, waitForUser, playMoves, playSound;
 
 /*---------- cached element references ---------*/ 
 
@@ -99,6 +99,19 @@ $('#rock').on('click', function() {
     setAudio(rockAudio)
 });
 
+$('#audio-enable').hide()
+
+$('#audio-disable').on('click', function() {
+    playSound = false;
+    $('#audio-disable').hide()
+    $('#audio-enable').show()
+});
+$('#audio-enable').on('click', function() {
+    playSound = true;
+    $('#audio-enable').hide()
+    $('#audio-disable').show()
+});
+
 
 /*------------ functions ------------*/
 // Initializes variables for game play
@@ -111,6 +124,7 @@ function init() {
     playerTimeInc = 1.2;
     compSpeed = 1000;
     playGame();
+    playSound = true;
 }
 
 
@@ -123,9 +137,11 @@ function lightItUp(buttonNum) {
     $(currentButton).css('background-color', buttons[buttonNum].color);
     
     // Plays sound from button object
-    let sound  = buttons[buttonNum].src;
-    player.src = sound;
-    player.play();
+    if (playSound) {
+        let sound  = buttons[buttonNum].src;
+        player.src = sound;
+        player.play();
+    }
 
     // Turns button back to black after 150 ms
     setTimeout(function(){
