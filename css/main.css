@@ -188,6 +188,7 @@ button:hover {
         justify-content: space-between;
         align-items: center;
         order: 3;
+        padding: 0px;
     }
     section h3 {
         font-size: 0.2em;
