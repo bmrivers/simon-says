@@ -1,70 +1,118 @@
 /*
 font-family: 'Chivo', sans-serif;
 font-family: 'Michroma', sans-serif;*/
+/* Mobile first */
 
 
 * {
     box-sizing: border-box;
+   /*border: 1px solid gray;*/
 }
 body {
     justify-content: center;
     color: white;
     font-family: 'Michroma', sans-serif;
     background-color: black;
-    display: flex;
     display: grid;
-    grid-template-columns: 110px / 1fr 3fr 1fr 3fr 1fr;
-    grid-template-rows: 100px / 2fr auto 2fr 1fr;
-    /* background-image: url('http://artfcity.com/wp-content/uploads/2014/04/RGBL21.gif'); */
+    grid-template-columns: 20vw / 1fr 3fr 1fr 3fr 1fr;
+    grid-template-rows: 20vh / 2fr auto 2fr 1fr;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
     padding: 30px;
     display: block;
-    border: 3px solid white;
     text-align: center;
 }
-header {
-    background-color: black;
-    width: 100%;
-}
-main {
-    background-color: black;
-    margin: 100px;
-    padding: 100px;
-    width: 700px;
-    padding-top: 20px;
+
+section h3 {
+    color: white;
+    border: 3px solid gray;
+    padding: 15px;
+    margin: 5px;
+    font-size: 20px;
+    width: 200px;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
 }
 
-#whos-turn {
-    z-index:-1;
-    line-height: 40px;
+header {
+    background-image: url('http://artfcity.com/wp-content/uploads/2014/04/RGBL06.gif');
+    width: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
-.circle-grid {
+
+footer {
+    text-align: right;
+    background-color: black;
+    line-height: 50px;
+    font-size: 14px;
+}
+
+main {
+    background-color: black;
+    margin: auto;
+    padding: 100px;
+    width: 80vw;
+    height: 80vh;
+    padding-top: 20px;
+    display: flex;
     justify-content: center;
     align-content: center;
+    flex-direction: column;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 20px 20% 20px 20%;;
+}
+
+button {
+    font-size: 20px;
+}
+
+button:hover {
+    border: 2px solid white;
+    color: black;
+}
+.new-genre {
+    background-color: none;
+}
+
+.new-genre:hover {
+    border: 3px solid lime;
+    color: white;
+}
+
+
+.circle-grid {
+    margin: auto;
+    justify-content: center;
+    align-content: center;;
     grid-column: 2 / 5;
     grid-area: 2, 4, 2, 5;
     display: grid;
-    grid-template-columns: 2fr 1fr 2fr 1fr 2fr;
-    grid-template-rows: 2fr 1fr 2fr 1fr 2fr;
-    width: 500px;
-    height: 500px;
+    grid-template-columns: 2fr 2fr 2fr;
+    grid-template-rows: 2fr 2fr 2fr;
+    width: 50vw;
+    height: 40vh;
+    max-width: 460px;
 }
 .circle {
-    /*width: 200px;
-    margin: 0;
-    height: 100%;
-    padding:none;
-    border: none;*/
-    
-    
+    height: 5em;
+    width: 5em;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
     border: 5px solid;
-    margin: 40px;
-    display: inline-block;
+    margin: 20%;
+}
+
+.circle:hover {
+    border-width: 10px;
 }
 
 #start {
@@ -79,28 +127,101 @@ main {
 #red {
     border-color: red;
     box-shadow: 0px 0px 10px red;
-    grid-column: 3 / 4;
+    grid-column: 2 / 3;
     grid-row: 1 / 2;
 }
 #blue {
     border-color: blue;
     box-shadow: 0px 0px 10px blue;
     grid-column: 1 / 2;
-    grid-row: 3 / 4;
+    grid-row: 2 / 3;
 }
 #yellow {
     border-color: yellow;
     box-shadow: 0px 0px 10px yellow;
-    grid-column: 5 / 6;
-    grid-row: 3 / 4;
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
 }
 #green {
-    border-color: green;
-    box-shadow: 0px 0px 10px green;
-    grid-column: 3 / 4;
-    grid-row: 5 / 6;
+    border-color: lime;
+    box-shadow: 0px 0px 10px lime;
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
 }
 
-button {
-    font-size: 20px;
+#whos-turn {
+    line-height: 40px;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        background-color:black;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    h1 {
+        height: 10vh;
+        margin: 0;
+    }
+    header {
+        height: 10vh;
+        width: 100%;
+        order: 1;
+        display: block;
+    }
+    section {
+        order: 2;
+        height: 10vh;
+    }
+    section div {
+        height: 10vh;
+        width: 30vw;
+    }
+    div {
+        display: block;
+    }
+    main {
+        height: 65vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        order: 3;
+    }
+    section h3 {
+        font-size: 0.2em;
+        /*margin-left: 20px;*/
+        line-height: 0.2em;
+        width: 30%;
+    }
+    footer {
+        width: 100%;
+        font-size: 10px;
+        order: 4;
+    }
+    .circle {
+        width: 3em;
+        height: 3em;
+    }
+    .circle-grid {
+        order: 2;
+        min-height: 100px;
+    }
+    .state-buttons {
+        order: 4;
+    }
+    #whos-turn {
+        order: 3;
+    }
+    .score-box {
+        order: 1;
+        margin: 0;
+        height: 5vh;
+    }
+    .score-box h3 {
+        margin: 0px;
+        padding: 0px;
+        font-size: 12px;
+    }
 }

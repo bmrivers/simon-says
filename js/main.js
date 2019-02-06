@@ -1,13 +1,13 @@
-/*---- constants -----*/
+/*----------- constants -------------*/
 // the buttons are objects in an array
 // each will have its own sound
 const buttons = [
     // 0. red button
-    {   src: '../simon-says/sounds/coffee-tin.wav',
+    {   src: '../simon-says/sounds/hi-hat-1.wav',
         color: 'red',
     },
     // 1. blue button 
-    {   src: '../simon-says/sounds/hi-hat-1.wav',
+    {   src: '../simon-says/sounds/coffee-tin.wav',
         color: 'blue',
     },
     // 2. green button
@@ -20,21 +20,39 @@ const buttons = [
     },
 ];
 
+const rockAudio = [
+    '../simon-says/sounds/hi-hat-1.wav',
+    '../simon-says/sounds/coffee-tin.wav',
+    '../simon-says/sounds/kick-1.wav',
+    '../simon-says/sounds/snare.wav',   
+]
+
+const rapAudio = [
+    'http://www.therapboard.com/audio/traviscott_yah.mp3',
+    'http://www.therapboard.com/audio/bigsean_ohgod.mp3',
+    'http://www.therapboard.com/audio/e40_1.mp3',
+    'http://www.therapboard.com/audio/takeoff_ayy.mp3',
+]
+
+const technoAudio = [
+    '../simon-says/sounds/tech-snare.wav',
+    '../simon-says/sounds/tech-tom.wav',
+    '../simon-says/sounds/tech-kick.wav',
+    '../simon-says/sounds/tech-kick2.wav'
+]
+
+
 const sadFaceHtml = '<img src="https://cultofthepartyparrot.com/parrots/hd/sadparrot.gif" width=50px/>';
-/*
-const otherSounds = {
-    farmSounds: {
-        src1: ;
-    }
-}*/
+
 
 const player = new Audio();
 
 /*----- app's state (variables) -----*/ 
 // pattern of moves created by code during gameplay
-var compMoves, compSpeed, playersMoves, currentMove, playing;
+var compMoves, compSpeed, playersMoves, currentMove, 
+playing, waitForUser, playMoves;
 
-/*----- cached element references -----*/ 
+/*---------- cached element references ---------*/ 
 
 var redButton = $('#red')
 var blueButton = $('#blue')
@@ -43,22 +61,24 @@ var yellowButton = $('#yellow')
 var startButton = $('#start');
 var whosTurn = $('#whos-turn');
 var stopButton = $('#stop')
+var rapChange = $('#rap');
+var technoChange = $('#techno');
+var rockChange = $('#rock');
+var score = $('#score');
 
-/*----- event listeners -----*/ 
+/*------------ event listeners ------------*/ 
 
 // Listens for a click on any circle
-//if (playing) {
-    $('.circle').on('click', function(evt) {
-        console.log(evt.target);
-        currentMove = $(evt.target).index();
-        //console.log(currentMove);
-        lightItUp(currentMove);
-        playersMoves.push(currentMove);
-        console.log(playersMoves);
-    });
-//}
+$('.circle').on('click', function(evt) {
+    console.log(evt.target);
+    currentMove = $(evt.target).index();
+    //console.log(currentMove);
+    lightItUp(currentMove);
+    playersMoves.push(currentMove);
+    console.log(playersMoves);
+});
 
-// Makes game start on click of start button
+// Makes game start when Start is clicked
 $(startButton).on('click', function(evt) {
     console.log('starting game...');
     $(stopButton).prop('disabled', false);
@@ -66,19 +86,45 @@ $(startButton).on('click', function(evt) {
     init();
 });
 
+// Makes game end when Stop is clicked
 $(stopButton).on('click', function(evt) {
     playing = false;
+    $(whosTurn).html('You stopped the game.');
     $(this).prop('disabled', true);
     $(startButton).prop('disabled', false);
 })
 
+// Top buttons control array of sounds to be used
 
-/*----- functions -----*/
+
+    // }, function() {
+//     $('.new-genre').css('background-color', '#black');
+// });
+    
+//     , function() {
+//         $(divButton).css('background-color', '#2A2A2A');
+//         $(divButton).siblings.css('background-color', 'black');
+//     });
+// }
+
+
+$('#rap').on('click', function() {
+    setAudio(rapAudio)
+});
+
+$('#techno').on('click', function() {
+    setAudio(technoAudio)
+});
+
+$('#rock').on('click', function() {
+    setAudio(rockAudio)
+});
+
+
+/*------------ functions ------------*/
 // Initializes variables for game play
 // Is run when start button is clicked.
-// Activates buttons??
 function init() {
-    var score = $('#score');
     compMoves = [0];
     playersMoves = [];
     currentMove = 0;
@@ -89,7 +135,7 @@ function init() {
 }
 
 
-// lights up a given button.. based on its color..
+// Lights up a given button.. based on its color..
 function lightItUp(buttonNum) {
     // creates an id from currentButton's color
     let currentButton = "#" + buttons[buttonNum].color;
@@ -110,13 +156,15 @@ function lightItUp(buttonNum) {
 }
 
 
-
+// Runs the computers moves and player gets to respond.
 function playGame() {
     playing = true;
-    $(score).html(compMoves.length);
-    let newCompMove;
 
+    // Renders score
+    $(score).html(compMoves.length);
+    
     // generate new move
+    let newCompMove;
     newCompMove = Math.floor(Math.random() * 4);
     compMoves.push(newCompMove);
 
@@ -126,14 +174,18 @@ function playGame() {
     
 
     // wait for user to make moves
-    setTimeout(function() {
+    waitForUser = setTimeout(function() {
+        $(whosTurn).html('Your turn!')
         playing = checkMoves();
         if (playing) {
             playersMoves = [];
-            playGame();
             $(whosTurn).html('Simon Says...')
+            playGame();
         }
     }, 6000 + (1000 * (compMoves.length - 1)));
+    if (playersMoves.length === compMoves.length) {
+        clearTimeout(waitForUser);
+    }
 }
 
 
@@ -152,7 +204,7 @@ function checkMoves() {
 
     // 2. Returns false if computers moves and players are not identical
     for (let i = 0; i < compMoves.length; i++) {
-        if(compMoves[i] !== playersMoves[i]) {
+        if (compMoves[i] !== playersMoves[i]) {
             $(whosTurn).html('Not quite right ' + sadFaceHtml);
             // Enables and disables start/stop respectively
             $(startButton).prop('disabled', false);
@@ -165,9 +217,12 @@ function checkMoves() {
 
 // lights up or 'plays' all the moves the computer is making
 function runCompMoves() {
-    $(whosTurn).html('Your turn!')
     let currIndex = -1;
-    var playMoves = setInterval(function() {
+    playMoves = setInterval(function() {
+        if (!playing) {
+            clearInterval(playMoves);
+            clearTimeout(waitForUser);
+        }
         currIndex++;
         if (currIndex >= compMoves.length) {
             return;
@@ -177,6 +232,12 @@ function runCompMoves() {
         compSpeed *= 0.98;
     }, compSpeed);
 }
-// updates score based on numbers of moves been done
 
 
+function setAudio(audioArray) {
+    let i = 0;
+    buttons.forEach(function(button) {
+        button.src = audioArray[i];
+        i++;
+    });
+}

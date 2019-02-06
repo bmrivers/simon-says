@@ -1,5 +1,11 @@
+<!--    Simon Says
+----    Bonny Rivers
+----    Janunary 2019 
+-->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,25 +17,40 @@
     <title>Simon Says</title>
     <title>Document</title>
 </head>
+
 <body>
+
     <header>
         <h1>Simon Says</h1>
     </header>
+
+    <section>
+        <div><h3 class="new-genre" id="rap">Rap</h3></div>
+        <div><h3 class="new-genre" id="rock">Rock</h3></div>
+        <div><h3 class="new-genre" id="techno">Techno</h3></div>
+    </section>
+
     <main>
         <div id="whos-turn">Hey!</div>
         <div class="circle-grid">
-            <div class="circle" id="red"><audio onclick="play()" id="audio" src="sounds/coffee-tin.wav" ></audio></div>   
+            <div class="circle" id="red"></div>   
             <div class="circle" id="blue"></div>
             <div class="circle" id="green"></div>
-            <div class="circle" id="yellow"></div></div>
-        <div class="score-box">
-            <h3>Score:  <span id="score"></span></h3>
+            <div class="circle" id="yellow"></div>
         </div>
-        <hr>
+        <div class="score-box">
+            <h3>Score:  <span id="score"></sspan></h3>
+        </div>
         <div class="state-buttons">
             <button id="start">Start</button> 
             <button id="stop">Stop</button>
         </div>
     </main>
+
+    <footer>
+        Created by Bonny R. @ General Assembly
+    </footer>
+
 </body>
+
 </html>
