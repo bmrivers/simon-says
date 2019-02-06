@@ -2,19 +2,19 @@
 // the buttons are objects in an array
 // each will have its own sound
 const buttons = [
-    // 0. red button
+    // 0. Red button
     {   src: '../simon-says/sounds/hi-hat-1.wav',
         color: 'red',
     },
-    // 1. blue button 
+    // 1. Blue button 
     {   src: '../simon-says/sounds/coffee-tin.wav',
         color: 'blue',
     },
-    // 2. green button
+    // 2. Green button
     {   src: '../simon-says/sounds/kick-1.wav',
         color: 'green',
     },
-    // 3. yellow button
+    // 3. Yellow button
     {   src: '../simon-says/sounds/snare.wav',
         color: 'yellow',
     },
@@ -41,14 +41,11 @@ const technoAudio = [
     '../simon-says/sounds/tech-kick2.wav'
 ]
 
-
 const sadFaceHtml = '<img src="https://cultofthepartyparrot.com/parrots/hd/sadparrot.gif" width=50px/>';
-
 
 const player = new Audio();
 
-/*----- app's state (variables) -----*/ 
-// pattern of moves created by code during gameplay
+/*----------- app's state (variables) ------------*/ 
 var compMoves, compSpeed, playersMoves, currentMove, 
 playing, waitForUser, playMoves;
 
@@ -70,17 +67,13 @@ var score = $('#score');
 
 // Listens for a click on any circle
 $('.circle').on('click', function(evt) {
-    console.log(evt.target);
     currentMove = $(evt.target).index();
-    //console.log(currentMove);
     lightItUp(currentMove);
     playersMoves.push(currentMove);
-    console.log(playersMoves);
 });
 
 // Makes game start when Start is clicked
 $(startButton).on('click', function(evt) {
-    console.log('starting game...');
     $(stopButton).prop('disabled', false);
     $(startButton).prop('disabled', true);
     init();
@@ -96,26 +89,12 @@ $(stopButton).on('click', function(evt) {
 
 // Top buttons control array of sounds to be used
 
-
-    // }, function() {
-//     $('.new-genre').css('background-color', '#black');
-// });
-    
-//     , function() {
-//         $(divButton).css('background-color', '#2A2A2A');
-//         $(divButton).siblings.css('background-color', 'black');
-//     });
-// }
-
-
 $('#rap').on('click', function() {
     setAudio(rapAudio)
 });
-
 $('#techno').on('click', function() {
     setAudio(technoAudio)
 });
-
 $('#rock').on('click', function() {
     setAudio(rockAudio)
 });
@@ -125,7 +104,7 @@ $('#rock').on('click', function() {
 // Initializes variables for game play
 // Is run when start button is clicked.
 function init() {
-    compMoves = [0];
+    compMoves = [];
     playersMoves = [];
     currentMove = 0;
     playing = true;
@@ -135,21 +114,20 @@ function init() {
 }
 
 
-// Lights up a given button.. based on its color..
+// Lights up a given button based on it's number..
 function lightItUp(buttonNum) {
-    // creates an id from currentButton's color
+    // Creates an id from currentButton's color
     let currentButton = "#" + buttons[buttonNum].color;
-    console.log(currentButton);
     
-    // selects the element based on id, changes color
+    // Selects the element based on id, changes color
     $(currentButton).css('background-color', buttons[buttonNum].color);
     
-    // plays sound from button object
+    // Plays sound from button object
     let sound  = buttons[buttonNum].src;
     player.src = sound;
     player.play();
 
-    // turns button back to black
+    // Turns button back to black after 150 ms
     setTimeout(function(){
         $(currentButton).css('background-color', 'black');
     }, 150);
@@ -163,7 +141,7 @@ function playGame() {
     // Renders score
     $(score).html(compMoves.length);
     
-    // generate new move
+    // Generate new move
     let newCompMove;
     newCompMove = Math.floor(Math.random() * 4);
     compMoves.push(newCompMove);
@@ -229,7 +207,7 @@ function runCompMoves() {
         } else {
             lightItUp(compMoves[currIndex]);
         }
-        compSpeed *= 0.98;
+        compSpeed *= 0.99;
     }, compSpeed);
 }
 

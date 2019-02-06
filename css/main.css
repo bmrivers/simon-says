@@ -50,6 +50,7 @@ footer {
     background-color: black;
     line-height: 50px;
     font-size: 14px;
+    padding: 10px;
 }
 
 main {
@@ -63,6 +64,7 @@ main {
     justify-content: center;
     align-content: center;
     flex-direction: column;
+    min-height: 400px;
 }
 
 section {
@@ -74,11 +76,16 @@ section {
 
 button {
     font-size: 20px;
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+    font-family: 'Chivo', sans-serif;
 }
 
 button:hover {
-    border: 2px solid white;
+    border: 2px solid lime;
     color: black;
+    
 }
 .new-genre {
     background-color: none;
@@ -169,23 +176,26 @@ button:hover {
         width: 100%;
         order: 1;
         display: block;
+        min-height: 20px;
     }
     section {
         order: 2;
         height: 10vh;
+        min-height: 20px;
     }
     section div {
         height: 10vh;
         width: 30vw;
+        min-height: 20px;
     }
     div {
         display: block;
     }
     main {
-        height: 65vh;
+        height:50vh;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
         order: 3;
         padding: 0px;
@@ -200,6 +210,7 @@ button:hover {
         width: 100%;
         font-size: 10px;
         order: 4;
+        padding: 3px;
     }
     .circle {
         width: 3em;
