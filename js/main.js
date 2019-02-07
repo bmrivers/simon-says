@@ -1,6 +1,6 @@
 /*----------- constants -------------*/
-// the buttons are objects in an array
-// each will have its own sound
+// The buttons are objects in an array
+// each will has its own sound
 const buttons = [
     // 0. Red button
     {   src: '../simon-says/sounds/hi-hat-1.wav',
@@ -92,9 +92,11 @@ $(stopButton).on('click', function(evt) {
 $('#rap').on('click', function() {
     setAudio(rapAudio)
 });
+
 $('#techno').on('click', function() {
     setAudio(technoAudio)
 });
+
 $('#rock').on('click', function() {
     setAudio(rockAudio)
 });
@@ -106,6 +108,7 @@ $('#audio-disable').on('click', function() {
     $('#audio-disable').hide()
     $('#audio-enable').show()
 });
+
 $('#audio-enable').on('click', function() {
     playSound = true;
     $('#audio-enable').hide()
@@ -126,7 +129,6 @@ function init() {
     playGame();
     playSound = true;
 }
-
 
 // Lights up a given button based on it's number..
 function lightItUp(buttonNum) {
@@ -165,7 +167,6 @@ function playGame() {
     //play computers moves
     $(whosTurn).html('Simon Says...')
     runCompMoves();
-    
 
     // wait for user to make moves
     waitForUser = setTimeout(function() {
@@ -177,6 +178,7 @@ function playGame() {
             playGame();
         }
     }, 6000 + (1000 * (compMoves.length - 1)));
+
     if (playersMoves.length === compMoves.length) {
         clearTimeout(waitForUser);
     }
@@ -209,7 +211,7 @@ function checkMoves() {
     return true;
 }
 
-// lights up or 'plays' all the moves the computer is making
+// Lights up or 'plays' all the moves the computer is making
 function runCompMoves() {
     let currIndex = -1;
     playMoves = setInterval(function() {
@@ -227,7 +229,7 @@ function runCompMoves() {
     }, compSpeed);
 }
 
-
+// Changes the audio played by the buttons
 function setAudio(audioArray) {
     let i = 0;
     buttons.forEach(function(button) {
