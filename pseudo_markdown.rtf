@@ -40,4 +40,36 @@ Winning (Losing) Logic\
     \uc0\u8259     The final score is added to a scoreboard (?)\
 \
 Restarting\
+    \uc0\u8259     Restarting the game clears the pattern of moves that the game had been remembering\
+\
+\
+####Dynamic Information\
+\
+Two elements change during game play:\
+\
+1. The score element updates to show the user how many turns they've completed.\
+2. A message is displayed to the user that the game is in progress and when it has ended\
+\
+####Game Play\
+Upon clicking the start button, the game will make a move: play a noise and \'93light up\'94 a button. The user will have approximately 10 seconds to press the same button.\
+\
+The game plays the same move and then make another random move in a decreasing amount of time.\
+\
+The user will have the same amount of time as before (x) to start make the same move (1) (2)\
+    \uc0\u8259     There will be a maximum time between all moves  to make sure the user isn\'92t going really slow\
+    \uc0\u8259     The pattern continues, on making random moves, and the game remembers the moves made and playing the pattern (in a fraction of the amount of time it initially played it, y-(moves*fraction)) after the user\'92s turn.\
+    \uc0\u8259     The game will continue speeding up as more moves are added to the pattern.\
+\
+Score\
+    \uc0\u8259     A score will be kept for every time the user successfully repeat\'92s the games moves.\
+    \uc0\u8259     This score will be equal to the amount of moves the game has made.\
+    \uc0\u8259     It will be one less than the level they lose on.\
+\
+Winning (Losing) Logic\
+    \uc0\u8259     If the user does not successfully complete the same pattern\'85\
+    \uc0\u8259     The \'93light\'94 turns red and an ugly noise is played\
+    \uc0\u8259     The final score is displayed\
+    \uc0\u8259     The final score is added to a scoreboard (?)\
+\
+Restarting\
     \uc0\u8259     Restarting the game clears the pattern of moves that the game had been remembering}
