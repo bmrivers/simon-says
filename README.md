@@ -20,7 +20,7 @@ For my version of Simon Says, I added the ability to customize the sound each bu
 ![Image of Simon Says interface](http://i68.tinypic.com/118zxgp.jpg)
 
 ###Technologies Used
-Visual Studio Code, GitHub, TheRapBoard.com, icons8.com, FreeSound.org, Chrome Dev Tools
+JavaScript, HTML, CSS, jQuery, Google Fonts, Visual Studio Code, GitHub, TheRapBoard.com, icons8.com, FreeSound.org, Chrome Dev Tools
 
 
 
@@ -35,6 +35,62 @@ The game plays the same move and then make another random move in a decreasing a
 
 Pressing start again will begin a new pattern. The sounds of the pattern can be changed at any point while the game is being played.
 
+###Code Snippet
+```javascript
+// Lights up a given button based on it's number..
+function lightItUp(buttonNum) {
+    // Creates an id from currentButton's color
+    let currentButton = "#" + buttons[buttonNum].color;
+    
+    // Selects the element based on id, changes color
+    $(currentButton).css('background-color', buttons[buttonNum].color);
+    
+    // Plays sound from button object
+    if (playSound) {
+        let sound  = buttons[buttonNum].src;
+        player.src = sound;
+        player.play();
+    }
+
+    // Turns button back to black after 150 ms
+    setTimeout(function(){
+        $(currentButton).css('background-color', 'black');
+    }, 150);
+}
+
+// Runs the computers moves and player gets to respond.
+function playGame() {
+    playing = true;
+
+    // Renders score
+    $(score).html(compMoves.length);
+    
+    // Generates new move
+    let newCompMove;
+    newCompMove = Math.floor(Math.random() * 4);
+    compMoves.push(newCompMove);
+
+    // Play computers moves
+    $(whosTurn).html('Simon Says...')
+    runCompMoves();
+
+    // Wait for user to make moves
+    waitForUser = setTimeout(function() {
+        $(whosTurn).html('Your turn!')
+        playing = checkMoves();
+        if (playing) {
+            playersMoves = [];
+            $(whosTurn).html('Simon Says...')
+            playGame();
+        }
+    }, 6000 + (1000 * (compMoves.length - 1)));
+
+    // ClearTimeout if user makes as many moves as computer 'says'
+    if (playersMoves.length === compMoves.length) {
+        clearTimeout(waitForUser);
+    }
+}
+```
 
 ###Next Steps
 * Simon says is currently unbeatable. I would like to implement winning logic after a certain number of moves.

@@ -151,7 +151,6 @@ function lightItUp(buttonNum) {
     }, 150);
 }
 
-
 // Runs the computers moves and player gets to respond.
 function playGame() {
     playing = true;
@@ -159,16 +158,16 @@ function playGame() {
     // Renders score
     $(score).html(compMoves.length);
     
-    // Generate new move
+    // Generates new move
     let newCompMove;
     newCompMove = Math.floor(Math.random() * 4);
     compMoves.push(newCompMove);
 
-    //play computers moves
+    // Play computers moves
     $(whosTurn).html('Simon Says...')
     runCompMoves();
 
-    // wait for user to make moves
+    // Wait for user to make moves
     waitForUser = setTimeout(function() {
         $(whosTurn).html('Your turn!')
         playing = checkMoves();
@@ -179,11 +178,11 @@ function playGame() {
         }
     }, 6000 + (1000 * (compMoves.length - 1)));
 
+    // ClearTimeout if user makes as many moves as computer 'says'
     if (playersMoves.length === compMoves.length) {
         clearTimeout(waitForUser);
     }
 }
-
 
 // Checks if player correctly copied computers moves
 // 1. By length, 2. By Content
