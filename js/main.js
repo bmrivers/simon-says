@@ -65,29 +65,24 @@ var score = $('#score');
 
 /*------------ event listeners ------------*/ 
 
-// Listens for a click on any circle
 $('.circle').on('click', function(evt) {
     currentMove = $(evt.target).index();
     lightItUp(currentMove);
     playersMoves.push(currentMove);
 });
 
-// Makes game start when Start is clicked
 $(startButton).on('click', function(evt) {
     $(stopButton).prop('disabled', false);
     $(startButton).prop('disabled', true);
     init();
 });
 
-// Makes game end when Stop is clicked
 $(stopButton).on('click', function(evt) {
     playing = false;
     $(whosTurn).html('You stopped the game.');
     $(this).prop('disabled', true);
     $(startButton).prop('disabled', false);
 })
-
-// Top buttons control array of sounds to be used
 
 $('#rap').on('click', function() {
     setAudio(rapAudio)
@@ -132,13 +127,9 @@ function init() {
 
 // Lights up a given button based on it's number..
 function lightItUp(buttonNum) {
-    // Creates an id from currentButton's color
     let currentButton = "#" + buttons[buttonNum].color;
     
-    // Selects the element based on id, changes color
     $(currentButton).css('background-color', buttons[buttonNum].color);
-    
-    // Plays sound from button object
     if (playSound) {
         let sound  = buttons[buttonNum].src;
         player.src = sound;
@@ -154,20 +145,15 @@ function lightItUp(buttonNum) {
 // Runs the computers moves and player gets to respond.
 function playGame() {
     playing = true;
-
-    // Renders score
     $(score).html(compMoves.length);
-    
-    // Generates new move
+
     let newCompMove;
     newCompMove = Math.floor(Math.random() * 4);
     compMoves.push(newCompMove);
 
-    // Play computers moves
     $(whosTurn).html('Simon Says...')
     runCompMoves();
 
-    // Wait for user to make moves
     waitForUser = setTimeout(function() {
         $(whosTurn).html('Your turn!')
         playing = checkMoves();

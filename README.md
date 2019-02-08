@@ -6,18 +6,38 @@ February 2019
 ---
 
 ###Game and Background
-This game is a rendition of Simon Says, originally created electronically in 1978 by Ralph Baer. The first game was a copy of Atari's Touch Me, with 4 buttons with lights that map to red, green, yellow, and blue areas of the device. Both games included a count of how many times you can copy "Simon" correctly.
+This game is a rendition of Simon Says, originally created electronically in 1978 by Ralph Baer, the Father of the Video Game.
 
-For my version of Simon Says, I added the ability to customize the sound each button makes when pressed or played by simon. I added a function to toggle the sound on and off. I also added a "Stop" button, in the event that the user would like the pattern or game to stop running. The design was inspired by a game called Circles, a memory game for people with Alzheimer's Disease.
+
+<img src="https://www.grandforksherald.com/sites/default/files/styles/16x9_620/public/field/image/Simon.jpg?itok=6iYkPs0k" width="300px">
+
+The first game was a copy of Atari's Touch Me, with 4 buttons with lights that map to red, green, yellow, and blue areas of the device.
+
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Touch_Me_by_Atari%2C_Model_No._BH-100%2C_Made_In_Taiwan_%28Handheld_Electronic_Game%29.jpg" width="300px">
+
+ Both games included a count of how many times you can copy "Simon" correctly.
+
+For my version of Simon Says, I added the ability to customize the sound each button makes when pressed or played by simon. I added a function to toggle the sound on and off. I also added a "Stop" button, in the event that the user would like the pattern or game to stop running. 
+
+
+<img src="https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2013/04/IMG_2481.png" width="200px">
+
+The UI design was inspired by a game called Circles, a memory game for people with Alzheimer's Disease.
 
 ###Wireframes
-![First Idea](http://i67.tinypic.com/2zom7oz.jpg)
-![Second Idea](http://i65.tinypic.com/34yuu54.jpg)
+
+
+<img src="http://i67.tinypic.com/2zom7oz.jpg" width="600px">
+
+<img src="http://i65.tinypic.com/34yuu54.jpg" width="600px">
 
 
 ###Screenshot
 
-![Image of Simon Says interface](http://i68.tinypic.com/118zxgp.jpg)
+<img src="http://i68.tinypic.com/118zxgp.jpgg" width="600px">
+
+
 
 ###Technologies Used
 JavaScript, HTML, CSS, jQuery, Google Fonts, Visual Studio Code, GitHub, TheRapBoard.com, icons8.com, FreeSound.org, Chrome Dev Tools
@@ -39,13 +59,10 @@ Pressing start again will begin a new pattern. The sounds of the pattern can be 
 ```javascript
 // Lights up a given button based on it's number..
 function lightItUp(buttonNum) {
-    // Creates an id from currentButton's color
+
     let currentButton = "#" + buttons[buttonNum].color;
-    
-    // Selects the element based on id, changes color
     $(currentButton).css('background-color', buttons[buttonNum].color);
     
-    // Plays sound from button object
     if (playSound) {
         let sound  = buttons[buttonNum].src;
         player.src = sound;
@@ -62,19 +79,15 @@ function lightItUp(buttonNum) {
 function playGame() {
     playing = true;
 
-    // Renders score
     $(score).html(compMoves.length);
     
-    // Generates new move
     let newCompMove;
     newCompMove = Math.floor(Math.random() * 4);
     compMoves.push(newCompMove);
 
-    // Play computers moves
     $(whosTurn).html('Simon Says...')
     runCompMoves();
 
-    // Wait for user to make moves
     waitForUser = setTimeout(function() {
         $(whosTurn).html('Your turn!')
         playing = checkMoves();
