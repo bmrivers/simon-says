@@ -2,19 +2,15 @@
 // The buttons are objects in an array
 // each will has its own sound
 const buttons = [
-    // 0. Red button
     {   src: '../simon-says/sounds/hi-hat-1.wav',
         color: 'red',
     },
-    // 1. Blue button 
     {   src: '../simon-says/sounds/coffee-tin.wav',
         color: 'blue',
     },
-    // 2. Green button
     {   src: '../simon-says/sounds/kick-1.wav',
         color: 'green',
     },
-    // 3. Yellow button
     {   src: '../simon-says/sounds/snare.wav',
         color: 'yellow',
     },
